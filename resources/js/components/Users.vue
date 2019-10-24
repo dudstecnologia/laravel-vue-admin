@@ -139,7 +139,7 @@
                 this.$Progress.start();
                 // console.log("Teste");
                 this.form.post('api/user')
-                    .then( res => {
+                    .then( (res) => {
                         console.log("Ok");
                         console.log(res);
 
@@ -151,7 +151,7 @@
                             title: 'Criado com sucesso'
                         })
                     })
-                    .catch( err => {
+                    .catch( (err) => {
                         console.log("Erro");
                         console.log(err);
                     });

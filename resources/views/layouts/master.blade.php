@@ -173,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
         <li class="nav-item">
             <router-link to="/dashboard" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-tachometer-alt blue"></i>
                 <p>
                 Dashboard
                 </p>
@@ -182,7 +182,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <li class="nav-item has-treeview {{--menu-open--}}">
             <a href="#" class="nav-link">
-                <i class="nav-icon fa fa-cog"></i>
+                <i class="nav-icon fa fa-cog green"></i>
                 <p>
                 Management
                 <i class="right fas fa-angle-left"></i>
@@ -206,7 +206,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <li class="nav-item">
             <router-link to="/profile" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
+                <i class="nav-icon fas fa-user orange"></i>
                 <p>
                 Profile
                 </p>
@@ -225,7 +225,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
 
-                <i class="nav-icon fas fa-power-off"></i>
+                <i class="nav-icon fas fa-power-off red"></i>
                 <p>
                     {{ __('Logout') }}
                 </p>

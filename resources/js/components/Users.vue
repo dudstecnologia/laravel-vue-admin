@@ -26,6 +26,7 @@
                       <th>Nome</th>
                       <th>Email</th>
                       <th>Type</th>
+                      <th>Criação</th>
                       <th>Modify</th>
                     </tr>
                   </thead>
@@ -50,7 +51,8 @@
                       <td>{{ user.id }}</td>
                       <td>{{ user.name }}</td>
                       <td>{{ user.email }}</td>
-                      <td>{{ user.type }}</td>
+                      <td>{{ user.type | upText }}</td>
+                      <td>{{ user.created_at | dataFormatada }}</td>
                       <td>
                           <a href="http://">
                             <i class="fa fa-edit blue"/>
@@ -134,11 +136,13 @@
                     .then(({ data }) => ( this.users = data));
             },
             criarUsuario () {
+                this.$Progress.start();
                 // console.log("Teste");
                 this.form.post('api/user')
                     .then( res => {
                         console.log("Ok");
                         console.log(res);
+                        this.$Progress.finish();
                     })
                     .catch( err => {
                         console.log("Erro");

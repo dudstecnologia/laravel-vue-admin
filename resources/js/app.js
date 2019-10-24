@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import moment from 'moment'
 import { Form, HasError, AlertError } from 'vform'
 
 window.Form = Form;
@@ -16,6 +17,14 @@ Vue.component(AlertError.name, AlertError);
 
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
+
+import VueProgressBar from 'vue-progressbar'
+
+Vue.use(VueProgressBar, {
+    color: 'rgb(143, 255, 199)',
+    failedColor: 'red',
+    height: '2px'
+})
 
 let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
@@ -28,6 +37,15 @@ const router = new VueRouter({
     routes,
     linkActiveClass: 'active'
 })
+
+Vue.filter('upText', function (text) {
+    // return text.toUpperCase();
+    return text.charAt(0).toUpperCase() + text.slice(1);
+});
+
+Vue.filter('dataFormatada', function (created) {
+    return moment(created).format('DD/MM/YYYY HH:mm');
+});
 
 /*
 Para tornar o menu ativo

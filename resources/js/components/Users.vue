@@ -142,7 +142,14 @@
                     .then( res => {
                         console.log("Ok");
                         console.log(res);
+
+                        $('#addNew').modal('hide')
+
                         this.$Progress.finish();
+                        toast.fire({
+                            type: 'success',
+                            title: 'Criado com sucesso'
+                        })
                     })
                     .catch( err => {
                         console.log("Erro");

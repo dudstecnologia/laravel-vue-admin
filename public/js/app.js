@@ -52295,8 +52295,16 @@ var routes = [{
   component: __webpack_require__(/*! ./components/Profile.vue */ "./resources/js/components/Profile.vue")["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  routes: routes
+  mode: 'history',
+  routes: routes,
+  linkActiveClass: 'active'
 });
+/*
+Para tornar o menu ativo
+Pela tag router-link: active-class = "active"
+Ou pelas rotas: linkActiveClass: 'active'
+*/
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

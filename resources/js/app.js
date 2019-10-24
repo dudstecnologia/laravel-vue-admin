@@ -18,8 +18,16 @@ let routes = [
 ]
 
 const router = new VueRouter({
-    routes
+    mode: 'history',
+    routes,
+    linkActiveClass: 'active'
 })
+
+/*
+Para tornar o menu ativo
+Pela tag router-link: active-class = "active"
+Ou pelas rotas: linkActiveClass: 'active'
+*/
 
 /**
  * The following block of code may be used to automatically register your

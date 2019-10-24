@@ -30,11 +30,27 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <!-- <tr>
                       <td>183</td>
                       <td>John Doe</td>
                       <td>11-7-2014</td>
                       <td><span class="tag tag-success">Approved</span></td>
+                      <td>
+                          <a href="http://">
+                            <i class="fa fa-edit blue"/>
+                          </a>
+                            /
+                          <a href="http://">
+                            <i class="fa fa-trash red"/>
+                          </a>
+                      </td>
+                    </tr> -->
+
+                    <tr v-for="user in users.data" :key="user.id">
+                      <td>{{ user.id }}</td>
+                      <td>{{ user.name }}</td>
+                      <td>{{ user.email }}</td>
+                      <td>{{ user.type }}</td>
                       <td>
                           <a href="http://">
                             <i class="fa fa-edit blue"/>
@@ -64,13 +80,32 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form @submit.prevent="criarUsuario" @keydown="form.onKeydown($event)">
             <div class="modal-body">
-                ...
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input v-model="form.name" type="text" name="name"
+                        class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
+                    <has-error :form="form" field="name"></has-error>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input v-model="form.email" type="text" name="email"
+                        class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
+                    <has-error :form="form" field="email"></has-error>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input v-model="form.password" type="text" name="password"
+                        class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
+                    <has-error :form="form" field="password"></has-error>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
+            </form>
             </div>
         </div>
     </div>
@@ -79,8 +114,37 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        data () {
+            return {
+                users: [],
+                form: new Form({
+                    name: '',
+                    email: '',
+                    password: ''
+                })
+            }
+        },
+        created () {
+            console.log('Componente criado');
+            this.loadUsers();
+        },
+        methods: {
+            loadUsers () {
+                axios.get('api/user')
+                    .then(({ data }) => ( this.users = data));
+            },
+            criarUsuario () {
+                // console.log("Teste");
+                this.form.post('api/user')
+                    .then( res => {
+                        console.log("Ok");
+                        console.log(res);
+                    })
+                    .catch( err => {
+                        console.log("Erro");
+                        console.log(err);
+                    });
+            }
         }
     }
 </script>
